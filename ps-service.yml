@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-on-docker
+spec:
+  type: ExternalName
+  externalName: ip-10-0-2-169.eu-west-1.compute.internal
