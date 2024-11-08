@@ -4,7 +4,12 @@
 docker compose up -d
 
 # Create external service
-kubectl apply -n default -f ps-service.yml
+hostname=`hostname -f`
+echo $hostname
+cp ps-service.yml ps-service-hostname.yml
+sed -i "s/ip-10-0-2-169.eu-west-1.compute.internal/$hostname/g" ps-service-hostname.yml
+kubectl apply -n atspa-demo-ns -f ps-service-hostname.yml
+
 
 # Wait for database to start
 echo "Waiting for 10s for database to be ready"
